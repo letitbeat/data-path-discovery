@@ -3,12 +3,13 @@ version: '3'
 services:
 
   onos:
-    image: onosproject/onos
+    image: onosproject/onos:latest
     ports:
      - "8181:8181"
      - "6653:6653"
      - "6633:6633"
     hostname: onos
+    container_name: onos
 
   dp:
     image: letitbeat/dp-emulator:latest
@@ -17,6 +18,7 @@ services:
     pid: host
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+    container_name: dp
 
   mongo:
     image: mongo
@@ -29,7 +31,7 @@ services:
     image: mongo-express
     restart: always
     ports:
-        - 8085:8081
+        - "8085:8081"
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: mongotest
@@ -43,6 +45,6 @@ services:
   web:
     image: letitbeat/dpd-ui:latest
     ports:
-      - 8088:80
+      - "8088:80"
     environment:
           - TARGET=http://127.0.0.1:8088
