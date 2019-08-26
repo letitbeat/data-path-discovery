@@ -11,6 +11,12 @@ Docker compose file containing the services required to run the SDN Data-path di
 * [MongoDB][5] Database to store packets and data required by the [analyzer][3].
 * [MongoDB Express][6] Web-based admin interface for MongoDB. *Optional*
 
+### Video
+
+You can find a video showcasing the services in the following link:
+
+[![Data Path Discovery Video][12]][13]
+
 ### Prerequisites
 
 * [Docker][7] Please refer to Docker [documentation][9] for detailed instructions on how to install it according to your platform.
@@ -19,19 +25,21 @@ Docker compose file containing the services required to run the SDN Data-path di
 ### How to run
 
 Create and start the containers:
+
+```bash
+docker-compose up -d
 ```
-$ docker-compose up -d
-```
+
 Once the containers are started you can proceed to create the network topology and start the packet sniffer from within the data-plane container:
 
-```
-$ docker exec -it data-path-discovery_dp_1 bash
+```bash
+docker exec -it data-path-discovery_dp_1 bash
 ```
 
 Inside the container execute:
 
-```
-$ python create_topology.py -a
+```bash
+python create_topology.py -a
 ```
 
 To this point you should be able to visualize the topology and start using web interface at the following url:
@@ -52,3 +60,5 @@ This project is licensed under the MIT License - see the [LICENSE.md][11] file f
 [9]: https://docs.docker.com/install/
 [10]: https://docs.docker.com/compose/install/
 [11]: https://github.com/letitbeat/data-path-discovery/blob/master/LICENSE
+[12]: https://i.imgur.com/K6oorB3.png
+[13]: https://vimeo.com/307046352
